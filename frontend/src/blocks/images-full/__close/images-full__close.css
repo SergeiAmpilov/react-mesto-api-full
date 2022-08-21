@@ -1,0 +1,14 @@
+.images-full__close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    left: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .images-full__close {
+        top: -36px;
+        right: -36px;
+        left: auto;
+    }
+}

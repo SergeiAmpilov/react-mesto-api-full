@@ -1,0 +1,28 @@
+.profile__pen {
+    background-color: transparent;
+    background-image: url(../../../images/pen-vector.svg);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin-left: 18px;
+    border: 1px solid white;
+    grid-area: pen;
+    width: 24px;
+    height: 24px;
+    transition: opacity 1s linear;
+}
+
+.profile__pen:hover {
+    opacity: 0.6;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .profile__pen {
+        margin: 0;
+        width: 18px;
+        height: 18px;
+        background-size: 7.5px;
+    }
+}

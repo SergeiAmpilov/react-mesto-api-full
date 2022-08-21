@@ -1,0 +1,6 @@
+.element {
+    background: white;
+    border-radius: 10px;
+    position: relative;
+    line-height: 0;
+}

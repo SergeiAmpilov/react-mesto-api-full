@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "npx eslint .",
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "deploy": "npm run build && scp -r ./build/* admin@51.250.21.247:/home/admin/mesto-frontend"
   },
   "repository": {
     "type": "git",

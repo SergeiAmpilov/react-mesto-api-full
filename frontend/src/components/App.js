@@ -100,9 +100,10 @@ function App() {
     const handleLogin = (email, password) => {
         auth.signIn(email, password)
             .then( (res) => {
+                console.log('res login', res)
                 setLoggedIn(true);
                 setUserEmail(email);
-                localStorage.setItem('token', res.token);
+                // localStorage.setItem('jwt', res.token);
                 history.push('/');
             })
             .catch((err) => {
@@ -112,28 +113,30 @@ function App() {
 
     // проверка токена
     React.useEffect(() => {
-        if (localStorage.getItem('token')) {
-            const token = localStorage.getItem('token');
+        // if (localStorage.getItem('jwt')) {
+            // const token = localStorage.getItem('jwt');
 
-            auth.checkToken(token)
+            console.log('check token');
+            auth.checkToken()
                 .then((res) => {
-                    if(res.data) {
+                    console.log('res', res);
+                    // if(res.data) {
                         setLoggedIn(true);
                         setUserEmail(res.data.email);
                         history.push('/');
-                    }
+                    // }
                 })
                 .catch((err) => {
-                    console.log(`Ошибка.....: ${err}`)
+                    console.log(`Ошибка.....34: ${err}`)
                 })
-        }
+        // }
 
     }, []);
 
     // logout
     const onLogout = () => {
         setLoggedIn(false);
-        localStorage.removeItem('token');
+        localStorage.removeItem('jwt');
         history.push('/sign-in');
     }
 

@@ -8,14 +8,18 @@ class Auth {
 
         const reqObject = {
             method,
+            credentials: 'include',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
         };
 
+        /*
         if (token) {
             reqObject.headers['Authorization'] = `Bearer ${token}`;
         }
+        */
 
         if (body) {
             reqObject.body = JSON.stringify(body);
@@ -37,8 +41,8 @@ class Auth {
     }
 
     /* проверка валидности токена */
-    checkToken(token) {
-        return this._request('users/me', false, 'GET', token);
+    checkToken() {
+        return this._request('users/me', false, 'GET');
     }
 }
 

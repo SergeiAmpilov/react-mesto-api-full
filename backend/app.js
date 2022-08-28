@@ -12,11 +12,12 @@ const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { checkSignIn, checkSignUp } = require('./middlewares/celebrate');
 const { processError, notFoundRequest } = require('./middlewares/error');
+const corsEnable = require('./functions/cors-enable');
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
-app.use(cors());
+app.use(cors(corsEnable));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

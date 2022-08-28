@@ -1,7 +1,8 @@
 class Api {
     constructor( cohort = 'cohort-39', token = '49225ff9-8b01-4660-8c51-8d10489a2608') {
-        this._baseUrl = `https://mesto.nomoreparties.co/v1/${cohort}/`;
-        this._token = token;
+        // this._baseUrl = `https://mesto.nomoreparties.co/v1/${cohort}/`;
+        this._baseUrl = 'https://back.ampilov.nomoredomains.sbs/';
+        // this._token = token;
     }
 
     _request(path = "", body = false, method = 'GET') {
@@ -9,7 +10,7 @@ class Api {
         const reqObject = {
             method,
             headers: {
-                authorization: this._token,
+                // authorization: this._token,
                 'Content-Type': 'application/json',
             },
         };

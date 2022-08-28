@@ -1,6 +1,7 @@
 class Auth {
     constructor() {
-        this._baseUrl = 'https://auth.nomoreparties.co/';
+        // this._baseUrl = 'https://auth.nomoreparties.co/';
+        this._baseUrl = 'https://back.ampilov.nomoredomains.sbs/';
     }
 
     _request(path = "", body = false, method = 'GET', token = false) {

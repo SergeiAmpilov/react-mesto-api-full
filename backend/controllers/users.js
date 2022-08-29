@@ -118,6 +118,7 @@ module.exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
+          SameSite: 'None',
           // domain: 'front.ampilov.nomoredomains.sbs',
         })
         .send({ message: 'Авотризация успешно выполнена' });

@@ -119,7 +119,7 @@ module.exports.login = (req, res, next) => {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
           SameSite: 'None',
-          // domain: 'front.ampilov.nomoredomains.sbs',
+          domain: 'localhost:3000',
         })
         .send({ message: 'Авотризация успешно выполнена' });
     })

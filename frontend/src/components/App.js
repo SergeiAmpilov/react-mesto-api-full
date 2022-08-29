@@ -100,9 +100,9 @@ function App() {
     const handleLogin = (email, password) => {
         auth.signIn(email, password)
             .then( (res) => {
-                console.log('res login', res)
+                // console.log('res login', res)
                 setLoggedIn(true);
-                setUserEmail(email);
+                // setUserEmail(email);
                 // localStorage.setItem('jwt', res.token);
                 history.push('/');
             })
@@ -116,13 +116,12 @@ function App() {
         // if (localStorage.getItem('jwt')) {
             // const token = localStorage.getItem('jwt');
 
-            console.log('check token');
+            console.log('try to check auth token');
             auth.checkToken()
                 .then((res) => {
-                    console.log('res', res);
                     // if(res.data) {
                         setLoggedIn(true);
-                        setUserEmail(res.data.email);
+                        // setUserEmail(res.email);
                         history.push('/');
                     // }
                 })
@@ -136,7 +135,7 @@ function App() {
     // logout
     const onLogout = () => {
         setLoggedIn(false);
-        localStorage.removeItem('jwt');
+        // localStorage.removeItem('jwt');
         history.push('/sign-in');
     }
 

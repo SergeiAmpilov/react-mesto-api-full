@@ -1,7 +1,8 @@
 class Api {
     constructor( cohort = 'cohort-39', token = '49225ff9-8b01-4660-8c51-8d10489a2608') {
         // this._baseUrl = `https://mesto.nomoreparties.co/v1/${cohort}/`;
-        this._baseUrl = 'https://back.ampilov.nomoredomains.sbs/';
+        // this._baseUrl = 'https://back.ampilov.nomoredomains.sbs/';
+        this._baseUrl = 'https://api.mesto.ampilovs.ru/';
         // this._token = token;
     }
 

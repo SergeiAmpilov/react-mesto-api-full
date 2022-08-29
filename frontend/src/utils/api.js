@@ -9,9 +9,11 @@ class Api {
 
         const reqObject = {
             method,
+            credentials: 'include',
             headers: {
                 // authorization: this._token,
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
             },
         };
 

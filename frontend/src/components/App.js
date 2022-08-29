@@ -192,7 +192,7 @@ function App() {
                 setCards(cardList);
             })
             .catch(err => console.log(`Ошибка.....: ${err}`));
-    }, []);
+    }, [loggedIn]);
 
     const handleCardLike = (card) => {
         const isLiked = card.likes.some(i => i._id === currentUser._id);

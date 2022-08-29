@@ -17,8 +17,8 @@ const corsEnable = require('./functions/cors-enable');
 const { PORT = 3000 } = process.env;
 
 const app = express();
-app.use(cors(corsEnable));
 app.use(cookieParser());
+app.use(cors(corsEnable));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);

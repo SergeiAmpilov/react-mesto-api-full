@@ -1,7 +1,7 @@
 const corsEnable = {
   origin: [
-    'https://front.ampilov.nomoredomains.sbs',
-    'http://front.ampilov.nomoredomains.sbs',
+    'https://mesto.ampilovs.ru',
+    'http://mesto.ampilovs.ru',
     'http://localhost:3000',
     'https://localhost:3000',
   ],

@@ -6,6 +6,8 @@ const NotFoundError = require('../errors/not-found-error');
 const DataError = require('../errors/data-error');
 const ExistError = require('../errors/exist-error');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
@@ -113,13 +115,13 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+
       res
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
           SameSite: 'None',
-          // domain: 'localhost:3000',
         })
         .send({ message: 'Авотризация успешно выполнена' });
     })

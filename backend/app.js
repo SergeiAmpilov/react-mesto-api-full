@@ -14,6 +14,7 @@ const auth = require('./middlewares/auth');
 const { checkSignIn, checkSignUp } = require('./middlewares/celebrate');
 const { processError, notFoundRequest } = require('./middlewares/error');
 const corsEnable = require('./functions/cors-enable');
+const { crashTest } = require('./functions/crash-test');
 
 const { PORT = 3000 } = process.env;
 
@@ -23,6 +24,8 @@ app.use(cors(corsEnable));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
+
+app.get('/crash-test', crashTest);
 
 app.post('/signin', checkSignIn, login);
 app.post('/signup', checkSignUp, createUser);

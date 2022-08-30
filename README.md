@@ -5,3 +5,5 @@
 
 FrontEnd: [https://mesto.ampilovs.ru](https://mesto.ampilovs.ru)
 BackEnd: [https://api.mesto.ampilovs.ru](https://api.mesto.ampilovs.ru)
+
+IP-adress: **51.250.21.247**

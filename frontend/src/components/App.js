@@ -120,7 +120,6 @@ function App() {
 
     // logout
     const onLogout = () => {
-        // history.push('/sign-in');
         auth.logout()
             .then(()=>{
                 setLoggedIn(false);

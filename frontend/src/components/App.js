@@ -100,11 +100,7 @@ function App() {
     const handleLogin = (email, password) => {
         auth.signIn(email, password)
             .then( (res) => {
-                // console.log('res login', res)
                 setLoggedIn(true);
-                // setUserEmail(email);
-                // localStorage.setItem('jwt', res.token);
-                history.push('/');
             })
             .catch((err) => {
                 console.log(`Ошибка.....: ${err}`)
@@ -113,31 +109,20 @@ function App() {
 
     // проверка токена
     React.useEffect(() => {
-        // if (localStorage.getItem('jwt')) {
-            // const token = localStorage.getItem('jwt');
-
-            console.log('try to check auth token');
-            auth.checkToken()
-                .then((res) => {
-                    // if(res.data) {
-                        setLoggedIn(true);
-                        // setUserEmail(res.email);
-                        history.push('/');
-                    // }
-                })
-                .catch((err) => {
-                    console.log(`Ошибка.....34: ${err}`)
-                })
-        // }
+        auth.checkToken()
+            .then((res) => {
+                    setLoggedIn(true);
+            })
+            .catch((err) => {
+                console.log(`Ошибка.....: ${err}`)
+            })
 
     }, []);
 
     // logout
     const onLogout = () => {
-        setLoggedIn(false);
-        // localStorage.removeItem('jwt');
         auth.logout();
-        history.push('/sign-in');
+        setLoggedIn(false);
     }
 
     const closeAllPopups = () => {
@@ -181,6 +166,10 @@ function App() {
     };
 
     React.useEffect(() => {
+        if (!loggedIn) {
+            return ;
+        }
+
         api.getProfileInfo()
             .then((profileData) => {
                 setCurrentUser(profileData)
@@ -192,6 +181,9 @@ function App() {
                 setCards(cardList);
             })
             .catch(err => console.log(`Ошибка.....: ${err}`));
+
+        history.push('/');
+
     }, [loggedIn]);
 
     const handleCardLike = (card) => {

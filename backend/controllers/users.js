@@ -128,15 +128,8 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.logout = (req, res, next) => {
-  res
-    .cookie('jwt', 'jwt.token.revoked', {
-      httpOnly: true,
-      sameSite: true,
-      maxAge: -1,
-    })
-    .send({ message: 'Вы вышли из системы' })
-    .catch(next);
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Выход' });
 };
 
 module.exports.getUserInfo = (req, res, next) => {

@@ -121,10 +121,21 @@ module.exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
-          SameSite: 'None',
+          SameSite: true,
         })
         .send({ message: 'Авотризация успешно выполнена' });
     })
+    .catch(next);
+};
+
+module.exports.logout = (req, res, next) => {
+  res
+    .cookie('jwt', 'jwt.token.revoked', {
+      httpOnly: true,
+      sameSite: true,
+      maxAge: -1,
+    })
+    .send({ message: 'Вы вышли из системы' })
     .catch(next);
 };
 

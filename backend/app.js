@@ -9,7 +9,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { checkSignIn, checkSignUp } = require('./middlewares/celebrate');
 const { processError, notFoundRequest } = require('./middlewares/error');
@@ -29,6 +29,7 @@ app.get('/crash-test', crashTest);
 
 app.post('/signin', checkSignIn, login);
 app.post('/signup', checkSignUp, createUser);
+app.post('/signout', logout);
 
 app.use(auth);
 app.use('/users', userRouter);

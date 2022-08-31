@@ -1,7 +1,5 @@
 class Auth {
     constructor() {
-        // this._baseUrl = 'https://auth.nomoreparties.co/';
-        // this._baseUrl = 'https://back.ampilov.nomoredomains.sbs/';
         this._baseUrl = 'https://api.mesto.ampilovs.ru/';
     }
 
@@ -15,12 +13,6 @@ class Auth {
                 'Content-Type': 'application/json',
             },
         };
-
-        /*
-        if (token) {
-            reqObject.headers['Authorization'] = `Bearer ${token}`;
-        }
-        */
 
         if (body) {
             reqObject.body = JSON.stringify(body);
@@ -47,7 +39,7 @@ class Auth {
 
     /* проверка валидности токена */
     checkToken() {
-        return this._request('users/me', false, 'GET');
+        return this._request('users/me', false);
     }
 }
 

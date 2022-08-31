@@ -111,7 +111,7 @@ function App() {
     React.useEffect(() => {
         auth.checkToken()
             .then((res) => {
-                    setLoggedIn(true);
+                setLoggedIn(true);
             })
             .catch((err) => {
                 console.log(`Ошибка.....: ${err}`)

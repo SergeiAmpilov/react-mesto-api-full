@@ -87,8 +87,7 @@ function App() {
             .then( (res) => {
                 setIsInfoTooltipPopupSuccessed(true);
                 setIsInfoTooltipPopupOpen(true);
-                history.push('/sign-in');
-                
+                history.push('/sign-in');                
             } )
             .catch((err) => {
                 setIsInfoTooltipPopupSuccessed(false);
@@ -121,8 +120,14 @@ function App() {
 
     // logout
     const onLogout = () => {
-        auth.logout();
-        setLoggedIn(false);
+        // history.push('/sign-in');
+        auth.logout()
+            .then(()=>{
+                setLoggedIn(false);
+            })
+            .catch((err) => {
+                console.log(`Ошибка.....: ${err}`)
+            });
     }
 
     const closeAllPopups = () => {
@@ -166,23 +171,21 @@ function App() {
     };
 
     React.useEffect(() => {
-        if (!loggedIn) {
-            return ;
+        if (loggedIn) {
+            api.getProfileInfo()
+                .then((profileData) => {
+                    setCurrentUser(profileData)
+                })
+                .catch(err => console.log(`Ошибка.....: ${err}`));
+            
+            api.getCards()
+                .then((cardList) => {
+                    setCards(cardList);
+                })
+                .catch(err => console.log(`Ошибка.....: ${err}`));
+
+            history.push('/');
         }
-
-        api.getProfileInfo()
-            .then((profileData) => {
-                setCurrentUser(profileData)
-            })
-            .catch(err => console.log(`Ошибка.....: ${err}`));
-        
-        api.getCards()
-            .then((cardList) => {
-                setCards(cardList);
-            })
-            .catch(err => console.log(`Ошибка.....: ${err}`));
-
-        history.push('/');
 
     }, [loggedIn]);
 
@@ -224,6 +227,13 @@ function App() {
                 handleLogout={onLogout}
             />
             <Switch>
+                <Route path="/sign-up">
+                    <Register onRegister={handleRegister} />
+                </Route>
+
+                <Route path="/sign-in">
+                    <Login onLogin={handleLogin} />
+                </Route>
 
                 <ProtectedRoute exact path="/"
                     onEditProfile = {handleEditProfileClick}
@@ -236,14 +246,6 @@ function App() {
                     loggedIn = {loggedIn}
                     component={Main}
                 />
-
-                <Route path="/sign-in">
-                    <Login onLogin={handleLogin} />
-                </Route>
-
-                <Route path="/sign-up">
-                    <Register onRegister={handleRegister} />
-                </Route>
 
                 <Route exact path="*">
                     {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-up"/>}

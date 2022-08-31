@@ -19,7 +19,7 @@ function Header({loggedIn, userEmail, handleLogout}) {
                 { loggedIn && (
                     <>
                         <p className="header__email">{userEmail}</p>
-                        <a className="header__link" href="" onClick={handleLogout}>Выйти</a>
+                        <a className="header__link" href="" onClick={linkClick}>Выйти</a>
                     </>
                 )}
 
